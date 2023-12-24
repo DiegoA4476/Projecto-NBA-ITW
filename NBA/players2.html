@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>ITW - NBA Test App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
+    <link href="../lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../lib/font-awesome/dist/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/myCSS.css" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm fixed-top bg-body-tertiary border-bottom">
+        <div class="container-xl" style="margin: 15px;">
+            <a href="index.html" class="navbar-brand p-0"><img src="imagenes/pngimg.com - nba_PNG6.png" height="40"></a>
+            <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse d-sm-inline-flex justify-content-between collapse">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li><a class="nav-link" href="arenas.html">Arenas</a></li>
+                    <li><a class="nav-link" href="players.html">Players</a></li>
+                    <li><a class="nav-link" href="teams.html">Teams</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Others</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="state.html">States</a></li>
+                            <li><a class="dropdown-item" href="game.html">NBA Trivia</a></li>
+                            <li><a class="dropdown-item" href="merchandise.html">Shop</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="navbar-nav justify-content-end" id="bd-theme" >
+                    <li class="navbar-text hstack"><div class="vr"></div></li>
+                    <li><button  class="switch" id="switch" style="margin: 5px;">
+                        <span><i class="bi bi-brightness-high"></i></span>
+                        <span><i class="bi bi-moon"></i></span>
+                    </button></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container" style="margin: 100px;">
+        <div class="row border-bottom">
+            <div class="col-sm-7 col-md-9 col-lg-10  py-2 mb-2">
+                <h2 data-bind="text:displayName"></h2>
+            </div>
+            <div class="col-sm-5 col-md-3 col-lg-2 buscador"> 
+                <div class="buscar">
+                    <input type="text" id="searchInput" placeholder="Buscar" required />
+                    <button style="border: 0;" class="boton" id="searchButton" >
+                        <i class="bi bi-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row small">
+            <div class="col-sm-1 mr-auto pt-2" >
+                <a href="players.html" class="btn btn-default btn-sm botones" title="Vista em Lista"><i class="bi bi-list-task"></i></a>
+            </div>
+        
+            <p class=" col-3 mr-auto pt-2">
+                <span data-bind="html: 'Page: ' + currentPage() + ' of ' + totalPages()"></span><br />
+                <span data-bind="html: 'Players: '+ fromRecord() + '-' + toRecord() + ' of ' + totalRecords()"></span>
+            </p>
+            <div class="col-8 my-0 pt-3">
+                <ul class="pagination float-end preto">
+                    <!-- ko if: currentPage() > 5 && totalPages() > 10 -->
+                    <li class="page-item float-end"><a class="page-link" title="First Page" data-bind="attr: { href: './players2.html?page=' + '1',  rel:'prev'}">⇤</a></li>
+                    <li class="page-item float-end"><a class="page-link" title="Previous Page" data-bind="attr: { href: './players2.html?page=' + previousPage(),  rel:'prev'}">←</a></li>
+                    <!-- /ko -->
+                    <!-- ko foreach: pageArray()-->
+                    <!-- ko if:$data == $parent.currentPage() -->
+                    <li class="active page-item preto"><a class="page-link preto" data-bind="attr: { title:'Current Page ' + $data }, text: $data"></a></li>
+                    <!-- /ko -->
+                    <!-- ko if:$data != $parent.currentPage() -->
+                    <li class="page-item preto"><a class="page-link preto" data-bind="attr: { href: './players2.html?page=' + $data, title:'Goto Page ' + $data }, text:$data"></a></li>
+                    <!-- /ko -->
+                    <!-- /ko -->
+                    <!-- ko if: currentPage() < totalPages() - 4 && totalPages() > 9 -->
+                    <li class="page-item"><a class="page-link preto" title="Next Page" data-bind="attr: { href: './players2.html?page=' + nextPage(), rel:'next' }">→</a></li>
+                    <li class="page-item"><a class="page-link preto" title="Last Page" data-bind="attr: { href: './players2.html?page=' + totalPages() }">⇥</a></li>
+                    <!-- /ko -->
+                </ul>
+        </div>
+        </div>
+        <div class="row" data-bind="foreach: records">
+            <div class=" col-sm-12 col-md-6 col-lg-4 mb-5 ">
+                <div class="card" style="width: 18rem;">
+                    <!-- Replace '...' with the actual image source -->
+                    <img data-bind="attr:{src: Photo}" class="card-img-top img-thumbnail" ><br />
+
+                    <div class="card-body">
+                        <h5 class="card-title text-center"  data-bind="text: Name"></h5>
+                    </div>
+                    <div class="card-body d-grid gap-2 col-6 mx-auto">
+                        <a class="card-link btn btn-primary" data-bind="attr: { href:'./playersdetails.html?id=' + Id }">Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        <img src="imagenes/pngimg.com - nba_PNG6.png" height="30" /> Loading data...
+                    </h5>
+                </div>
+                <div class="modal-body text-center">
+                    <i class="fa fa-spin fa-3x fa-refresh"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../lib/jquery/dist/jquery.min.js"></script>
+    <script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../lib/knockout/dist/knockout-latest.min.js"></script>
+    <script src="script/players2.js"></script>
+</body>
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>NBA Trivia Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
+    <link href="../lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../lib/font-awesome/dist/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/myCSS.css" />
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            text-align: center;
+        }
+
+        #quiz-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm fixed-top bg-body-tertiary border-bottom">
+        <div class="container-xl" style="margin: 15px;">
+            <a href="index.html" class="navbar-brand p-0"><img src="imagenes/pngimg.com - nba_PNG6.png" height="40"></a>
+            <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse d-sm-inline-flex justify-content-between collapse">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li><a class="nav-link" href="arenas.html">Arenas</a></li>
+                    <li><a class="nav-link" href="players.html">Players</a></li>
+                    <li><a class="nav-link" href="teams.html">Teams</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Others</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="state.html">States</a></li>
+                            <li><a class="dropdown-item" href="game.html">NBA Trivia</a></li>
+                            <li><a class="dropdown-item" href="merchandise.html">Shop</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="navbar-nav justify-content-end" id="bd-theme" >
+                    <li class="navbar-text hstack"><div class="vr"></div></li>
+                    <li><button  class="switch" id="switch" style="margin: 5px;">
+                        <span><i class="bi bi-brightness-high"></i></span>
+                        <span><i class="bi bi-moon"></i></span>
+                    </button></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div id="quiz-container"  style="margin-top: 150px ;">
+        <h1 class="mb-4">NBA Trivia Game</h1>
+        <div id="quiz"></div>
+        <button id="next" class="btn btn-primary">Next Question</button>
+        <button id="submit" class="btn btn-success" style="display: none;">Submit Answers</button>
+        <div id="result" class="mt-4"></div>
+        <button id="play-again" class="btn btn-info mt-4" style="display: none;">Play Again</button>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js (Optional, if needed) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-eMeGOFEeMXEchX6hiEMdWkRTjk0HbLTxEGVZxxz9sfAtKX5xsF93JCsmXhUvNTN" crossorigin="anonymous"></script>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            var currentQuestion = 0;
+            var questions = [
+                {
+                    question: "Who is known as 'The King'?",
+                    options: ["LeBron James", "Kevin Durant", "Stephen Curry", "Kawhi Leonard"],
+                    correctAnswer: "LeBron James"
+                },
+                {
+                    question: "Which team has won the most NBA championships?",
+                    options: ["Los Angeles Lakers", "Boston Celtics", "Chicago Bulls", "Golden State Warriors"],
+                    correctAnswer: "Boston Celtics"
+                },
+                {
+                    question: "What do the letters NBA stand for?",
+                    options: ["National Baseball Alliance", "National Basketball Alliance", "National Basketball Association", "New Basketball Association"],
+                    correctAnswer: "National Basketball Association"
+                },
+                {
+                    question: "In what year did the Toronto Raptors join the NBA as an expansion team?",
+                    options: ["1990", "1995", "2000", "2005"],
+                    correctAnswer: "1995"
+                },
+                {
+                    question: "Who is the NBA's all-time leading scorer?",
+                    options: ["Kobe Bryant", "Stephen Curry", "Michael Jordan", "LeBron James"],
+                    correctAnswer: "LeBron James"
+                },
+                {
+                    question: "Which team’s logo is shaped like a musical note?",
+                    options: ["Denver Nuggets", "Utah Jazz", "Miami Heat", "Chicago Bulls"],
+                    correctAnswer: "Utah Jazz"
+                },
+                {
+                    question: "What NBA legend was commonly referred to as The Round Mound of Rebound?",
+                    options: ["Charles Barkley", "Michael Jordan", "Shaquille O'Neal", "Kobe Bryant"],
+                    correctAnswer: "Charles Barkley"
+                },
+                {
+                    question: "Which NBA team has the longest winning streak?",
+                    options: ["Los Angeles Lakers", "New York Knicks", "Boston Celtics", "Orlando Magic"],
+                    correctAnswer: "Los Angeles Lakers"
+                },
+                {
+                    question: "Which team did the Miami Heat defeat in the 2006 NBA Finals to win the championship?",
+                    options: ["Toronto Raptors", "Houston Rockets", "Dallas Mavericks", "Golden State Warriors"],
+                    correctAnswer: "Dallas Mavericks"
+                },
+                {
+                    question: "Who is the NBA's all-time assists leader?",
+                    options: ["Magic Johnson", "Chris Paul", "Steve Nash", "John Stockton"],
+                    correctAnswer: "Chris Paul"
+                },
+                {
+                    question: "In which city did the Sacramento Kings originate before moving to Sacramento?",
+                    options: ["Cincinnati", "Buffalo", "Minneapolis", "Rochester"],
+                    correctAnswer: "Rochester"
+                },
+                {
+                    question: "Which player was nicknamed 'The Worm' during his NBA career?",
+                    options: ["Dennis Rodman", "Hakeem Olajuwon", "Karl Malone", "Patrick Ewing"],
+                    correctAnswer: "Dennis Rodman"
+                },
+                {
+                    question: "Who is the youngest player to score 70 or more points in a single NBA game?",
+                    options: ["Kobe Bryant", "LeBron James", "Devin Booker", "Tracy McGrady"],
+                    correctAnswer: "Devin Booker"
+                },
+                {
+                    question: "Which team drafted Dirk Nowitzki before trading him to the Dallas Mavericks in 1998?",
+                    options: ["Los Angeles Clippers", "Milwaukee Bucks", "Portland Trail Blazers", "Memphis Grizzlies"],
+                    correctAnswer: "Milwaukee Bucks"
+                },
+                {
+                    question: "Which player is known for having the highest career points per game average in NBA history?",
+                    options: ["Kareem Abdul-Jabbar", "Wilt Chamberlain", "Le Bron James", "Michael Jordan"],
+                    correctAnswer: "Michael Jordan"
+                },
+                // Add more questions as needed
+            ];
+            // Store the original set of questions
+            var originalQuestions = [...questions];
+
+            // Shuffle questions to get random 5 questions
+            questions = shuffleArray(questions).slice(0, 5);
+
+            // Display first question
+            displayQuestion(questions[currentQuestion]);
+
+            // Handle next button click
+            $("#next").on("click", function () {
+                var selectedOption = $("input[name='options']:checked").val();
+
+                if (selectedOption) {
+                    questions[currentQuestion].userAnswer = selectedOption;
+                    currentQuestion++;
+
+                    if (currentQuestion < questions.length) {
+                        displayQuestion(questions[currentQuestion]);
+                    } else {
+                        $("#next").hide();
+                        $("#submit").show();
+                    }
+                } else {
+                    alert("Please select an option before moving to the next question.");
+                }
+            });
+
+            // Handle submit button click
+            $("#submit").on("click", function () {
+                var userAnswers = questions.map(q => q.userAnswer);
+                var score = calculateScore(questions, userAnswers);
+                displayResult(score);
+                $("#play-again").show();
+            });
+
+            // Handle play-again button click
+            $("#play-again").on("click", function () {
+                currentQuestion = 0;
+                questions = shuffleArray([...originalQuestions]).slice(0, 5);
+                displayQuestion(questions[currentQuestion]);
+                $("#next").show();
+                $("#submit").hide();
+                $("#result").empty();
+                $("#play-again").hide();
+            });
+
+            // Function to shuffle an array
+            function shuffleArray(array) {
+                for (var i = array.length - 1; i > 0; i--) {
+                    var j = Math.floor(Math.random() * (i + 1));
+                    var temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
+                }
+                return array;
+            }
+
+            // Function to display a question
+            function displayQuestion(question) {
+                var quizContainer = $("#quiz");
+                quizContainer.empty();
+
+                var optionsHtml = question.options.map(function (option) {
+                    return `<input type="radio" name="options" value="${option}">${option}<br>`;
+                }).join('');
+
+                var questionHtml = `
+                                            <div class="question mb-4">
+                                                <p>${question.question}</p>
+                                                ${optionsHtml}
+                                            </div>
+                                        `;
+
+                quizContainer.append(questionHtml);
+            }
+
+            // Function to calculate the score
+            function calculateScore(questions, userAnswers) {
+                var score = 0;
+                questions.forEach(function (q, index) {
+                    if (q.correctAnswer === userAnswers[index]) {
+                        score++;
+                    }
+                });
+                return score;
+            }
+
+            // Function to display the result
+            function displayResult(score) {
+                var resultContainer = $("#result");
+                resultContainer.text(`Your score is: ${score} out of ${questions.length}`);
+            }
+        });
+    
+    </script>
+  <nav class="navbar navbar-light  fixed-bottom">
+    <div class="container small">
+        <div class="navbar-text">&copy;  Introdução as Tecnologias Web - 2023/24</div>
+        <div class="navbar-text">Made with <i class="fa fa-heart-o text-danger"></i> for U by <a href="mailto:jsp@ua.pt" class="text-decoration-none text-muted">jsp@ua.pt</a>.</div>
+        <div class="navbar-nav">
+            <div class="nav-item text-end"><a href="https://www.ua.pt" class="nav-link">Universidade de Aveiro</a></div>
+        </div>
+    </div>
+</nav>
+<nav class="navbar navbar-light  fixed-bottom">
+    <div class="container small">
+        <div class="navbar-text">&copy;  Introdução as Tecnologias Web - 2023/24</div>
+            <div class="navbar-nav">
+            <div class="nav-item text-end"><a href="https://www.ua.pt" class="nav-link">Universidade de Aveiro</a></div>
+        </div>
+    </div>
+</nav>
+    <script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../lib/knockout/dist/knockout-latest.min.js"></script>
+    <script src="../lib/jquery/dist/jquery.min.js"></script>
+    <script src="script/index.js"></script>
+</body>
+</html>

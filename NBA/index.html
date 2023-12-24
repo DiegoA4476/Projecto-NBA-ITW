@@ -1,0 +1,214 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>ITW - NBA Test App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kalnia:wght@500&family=Rubik+Doodle+Shadow&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
+    <link href="../lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../lib/font-awesome/dist/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/myCSS.css" />
+    <style>
+        .carousel-item {
+            z-index: -100;
+            height: 640px;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+            .carousel-item:nth-child(1) {
+                background-image: url('https://cdn.nba.com/manage/2023/11/USATSI_21963262-784x441.jpg');
+            }
+
+            .carousel-item:nth-child(2) {
+                background-image: url('https://cdn.nba.com/manage/2023/11/GettyImages-1797516862.jpg');
+            }
+
+            .carousel-item:nth-child(3) {
+                background-image: url('https://cdn.nba.com/manage/2023/11/banchero-784x441.jpg');
+            }
+
+            .carousel-item:nth-child(4) {
+                background-image: url('https://cdn.nba.com/manage/2023/11/GettyImages-1730506370-1-scaled-e1700674286240-1568x882.jpg');
+            }
+
+            .carousel-item:nth-child(5) {
+                background-image: url('https://cdn.nba.com/manage/2023/11/GettyImages-1790167479-1-1568x882.jpg');
+            }
+    </style>
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-sm fixed-top bg-body-tertiary border-bottom">
+        <div class="container-xl" style="margin: 15px;">
+            <a href="index.html" class="navbar-brand p-0"><img src="imagenes/pngimg.com - nba_PNG6.png" height="40"></a>
+            <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse d-sm-inline-flex justify-content-between collapse">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li><a class="nav-link" href="arenas.html">Arenas</a></li>
+                    <li><a class="nav-link" href="players.html">Players</a></li>
+                    <li><a class="nav-link" href="teams.html">Teams</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Others</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="state.html">States</a></li>
+                            <li><a class="dropdown-item" href="game.html">NBA Trivia</a></li>
+                            <li><a class="dropdown-item" href="merchandise.html">Shop</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="navbar-nav justify-content-end" id="bd-theme" >
+                    <li class="navbar-text hstack"><div class="vr"></div></li>
+                    <li><button  class="switch" id="switch" style="margin: 5px;">
+                        <span><i class="bi bi-brightness-high"></i></span>
+                        <span><i class="bi bi-moon"></i></span>
+                    </button></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Working Area -->
+    <div class="container-xl">
+        <div id="myCarousel" style="box-shadow: 0 6px 10px 0 rgba(0,0,0,0.6); margin-top: 100px;" class="carousel slide carousel-fade mb-5" data-bs-ride="carousel" data-bs-interval="10000">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" aria-label="Slide 1" class="active" aria-current="true"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="3" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="4" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="carousel-caption d-none d-md-block">
+                        <p >The Magic (3-1) finished their Group Play games with a dominant East C win over the Celtics.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="carousel-caption d-none d-md-block">
+                        <p>LeBron James and Luka Doncic waged an MVP-caliber battle on Wednesday.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="carousel-caption d-none d-md-block">
+                        <p>Sacramento’s Paolo Banchero has improved as a shooter and defender in Year 2.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="carousel-caption d-none d-md-block">
+                        <p>Jrue Holiday and Jayson Tatum have helped lead Boston to an NBA-best 11-3 record to begin the season.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="carousel-caption d-none d-md-block">
+                        <p>The Warriors have seen a massive dip in creating early offense, ranking last in transition points.</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="border-bottom py-2 mb-2 col-6">
+                <h1 style="font-family: Rubik Doodle Shadow; font-size: 60px;" >About</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-md-6 col-lg-6" style="text-align: justify;">
+                <p >
+                    The National Basketball Association (NBA) is a professional basketball league in North America composed of 30 teams (29 in the United States and 1 in Canada). It is one of the major professional sports leagues in the United States and Canada and is considered the premier professional basketball league in the world.
+
+                    The league was founded in New York City on June 6, 1946, as the Basketball Association of America (BAA). It changed its name to the National Basketball Association on August 3, 1949, after merging with the competing National Basketball League (NBL). In 1976, the NBA and the American Basketball Association (ABA) merged, adding four franchises to the NBA. The NBA's regular season runs from October to April, with each team playing 82 games. The league's playoff tournament extends into June. As of 2020, NBA players are the world's best paid athletes by average annual salary per player.</p>
+
+                    
+                <p> NBA is an active member of USA Basketball (USAB), which is recognized by the FIBA (International Basketball Federation) as the national governing body for basketball in the United States. The league's several international as well as individual team offices are directed out of its head offices in Midtown Manhattan, while its NBA Entertainment and NBA TV studios are directed out of offices located in Secaucus, New Jersey. In North America, the NBA is the third wealthiest professional sport league after the National Football League (NFL) and Major League Baseball (MLB) by revenue, and among the top four in the world.</p>
+                    
+                <p> Boston Celtics and the Los Angeles Lakers are tied for the most NBA championships with 17 each. The reigning league champions are the Denver Nuggets, who defeated the Miami Heat in the 2023 NBA Finals.
+                    
+                    The current league organization divides 30 teams into two conferences of three divisions with five teams each. The current divisional alignment was introduced in the 2004–05 season. Reflecting the population distribution of the United States and Canada as a whole, most teams are in the eastern half of the country: 13 teams are in the Eastern Time Zone, nine in the Central, three in the Mountain, and five in the Pacific.
+                    
+                </p>
+            </div>
+            <div class="col-sm-4 col-md-5 col-lg-5" style="margin-left: 30px;">
+                <div class="row elemento">
+                    <div class="card mb-3 "  style="max-width: 540px; ; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
+                        <div class="row g-0">
+                            <div class="col-md-7">
+                                <iframe style="margin: 2%;" width="250" height="200" src="https://www.youtube-nocookie.com/embed/u0ld5hCvxFQ?si=J6eDOuf2lOpgKrzA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            </div>
+                            <div class="col-md-5 elemento2  " style="margin-top: 35px ;">
+                                <img src="imagenes/pngimg.com - nba_PNG6.png" width="60px" style="margin-left: 65px;"/>
+                                <div class="card-body" style="margin-left: 15px;">
+                                    <h4 class="card-title" style="text-align: center; font-family: Rubik Doodle Shadow ;">Best moments 2023</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row elemento">
+                    <div class="card mb-3 "  style="max-width: 540px; ; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
+                        <div class="row g-0">
+                            <div class="col-md-7">
+                                <iframe style="margin: 2%;" width="250" height="200" src="https://www.youtube-nocookie.com/embed/UQWUHh3rJFo?si=3Z_Z6EfsTWO4afMB&amp;start=15" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            </div>
+                            <div class="col-md-5 elemento2" style="margin-top: 35px ;">
+                                <img src="imagenes/pngimg.com - nba_PNG6.png" width="60px" style="margin-left: 65px;"/>
+                                <div class="card-body" style="margin-left: 15px;">
+                                    <h4 class="card-title" style="text-align: center; font-family: Rubik Doodle Shadow ;">Top moments all history</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row elemento">
+                    <div class="card mb-3 "  style="max-width: 540px; ; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
+                        <div class="row g-0">
+                            <div class="col-md-7">
+                                <iframe style="margin: 2%;" width="250" height="200" src="https://www.youtube-nocookie.com/embed/ORfjgE6n2Pc?si=d3uNj6U5JUhBgXv0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            </div>
+                            <div class="col-5 elemento2" style="margin-top: 35px ;">
+                                <img src="imagenes/pngimg.com - nba_PNG6.png" width="60px" style="margin-left: 65px;"/>
+                                <div class="card-body" style="margin-left: 15px;">
+                                    <h4 class="card-title" style="text-align: center; font-family: Rubik Doodle Shadow ;">GREATEST DUNKS of All Time </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+            
+    <nav class="navbar navbar-light  fixed-bottom">
+        <div class="container small">
+            <div class="navbar-text">&copy;  Introdução as Tecnologias Web - 2023/24</div>
+            
+                <div class="nav-item text-end"><a href="https://www.ua.pt" class="nav-link">Universidade de Aveiro</a></div>
+            </div>
+        </div>
+    </nav>
+    
+    <script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../lib/knockout/dist/knockout-latest.min.js"></script>
+    <script src="../lib/jquery/dist/jquery.min.js"></script>
+    <script src="script/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>ITW - NBA Test App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
+    <link href="../lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../lib/font-awesome/dist/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/myCSS.css" />
+</head>
+    
+    <style>
+        /* Add your custom styles here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .product {
+            border: 1px solid #ccc;
+            margin: 10px;
+            padding: 15px;
+            text-align: center;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm fixed-top bg-body-tertiary border-bottom">
+        <div class="container-xl" style="margin: 15px;">
+            <a href="index.html" class="navbar-brand p-0"><img src="imagenes/pngimg.com - nba_PNG6.png" height="40"></a>
+            <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse d-sm-inline-flex justify-content-between collapse">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li><a class="nav-link" href="arenas.html">Arenas</a></li>
+                    <li><a class="nav-link" href="players.html">Players</a></li>
+                    <li><a class="nav-link" href="teams.html">Teams</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Others</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="state.html">States</a></li>
+                            <li><a class="dropdown-item" href="game.html">NBA Trivia</a></li>
+                            <li><a class="dropdown-item" href="merchandise.html">Shop</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="navbar-nav justify-content-end" id="bd-theme" >
+                    <li class="navbar-text hstack"><div class="vr"></div></li>
+                    <li><button  class="switch" id="switch" style="margin: 5px;">
+                        <span><i class="bi bi-brightness-high"></i></span>
+                        <span><i class="bi bi-moon"></i></span>
+                    </button></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container" style="margin: 110px;">
+        <h1>Welcome to the NBA Merch Store</h1>
+
+        <div id="merchandise" class="row">
+            <!-- Product items will be dynamically added here using Knockout.js -->
+            <!-- The Knockout.js bindings will be added to this div -->
+        </div>
+
+        <div id="cart">
+            <h2>Shopping Cart</h2>
+            <ul data-bind="foreach: cart">
+                <li data-bind="text: name"></li>
+            </ul>
+            <button data-bind="click: checkout">Checkout</button>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.min.js"></script>
+    <script>
+        // Your existing merchandiseData array
+        const merchandiseData = [
+            { name: "Jersey 1", price: 49.99, image: "" },
+            { name: "Basketball", price: 29.99, image: "" },
+            { name: "Cap", price: 19.99, image: "cap.jpg" },
+            // Add more items as needed
+        ];
+
+        // Knockout ViewModel
+        function MerchandiseViewModel() {
+            var self = this;
+
+            self.merchandise = ko.observableArray(merchandiseData);
+            self.cart = ko.observableArray([]);
+
+            self.addToCart = function (item) {
+                self.cart.push(item);
+            };
+
+            self.checkout = function () {
+                // Replace this with your own logic for handling the checkout
+                alert("Checkout functionality goes here.");
+            };
+        }
+
+        // Initialize Knockout ViewModel and apply bindings
+        var viewModel = new MerchandiseViewModel();
+        ko.applyBindings(viewModel);
+
+        // jQuery to dynamically add merchandise items
+        $(document).ready(function () {
+            const merchandiseContainer = $("#merchandise");
+
+            // Loop through the merchandise data and create HTML elements for each item
+            merchandiseData.forEach(item => {
+                const productDiv = $("<div>").addClass("product");
+
+                const imgElement = $("<img>").attr({ src: item.image, alt: item.name });
+                const nameElement = $("<h3>").text(item.name);
+                const priceElement = $("<p>").text(`$${item.price.toFixed(2)}`);
+                const buyButton = $("<button>").text("Buy Now").click(() => viewModel.addToCart(item));
+
+                // Append elements to the product div
+                productDiv.append(imgElement, nameElement, priceElement, buyButton);
+
+                // Append the product div to the merchandise container
+                merchandiseContainer.append(productDiv);
+            });
+        });
+    </script>
+    <script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../lib/knockout/dist/knockout-latest.min.js"></script>
+    <script src="../lib/jquery/dist/jquery.min.js"></script>
+    <script src="script/players.js"></script>
+</body>
+</html>

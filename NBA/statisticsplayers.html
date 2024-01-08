@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NBA Players Distribution</title>
+    <!-- Add the amCharts library -->
+    <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/maps.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/geodata/worldLow.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/charts.js"></script> <!-- Add the charts library -->
+    <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+    <!-- Add jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+    <div id="map" style="height: 500px;"></div>
+    <div id="graph" style="height: 500px;"></div>
+
+    <script>
+        // Updated NBA player distribution data in absolute numbers
+        const nbaPlayerData = [
+            { country: 'United States', players: 381 },
+            { country: 'Canada', players: 22 },
+            { country: 'Australia', players: 10 },
+            { country: 'France', players: 9 },
+            { country: 'Germany', players: 6 },
+            { country: 'Nigeria', players: 5 },
+            { country: 'Spain', players: 5 },
+            { country: 'Serbia', players: 5 },
+            { country: 'Turkey', players: 4 },
+            { country: 'Cameroon', players: 3 },
+            { country: 'Greece', players: 3 },
+            { country: 'Croatia', players: 3 },
+            { country: 'Slovenia', players: 3 },
+            { country: 'Bahamas', players: 3 },
+            { country: 'Japan', players: 2 },
+            { country: 'DR Congo', players: 2 },
+            { country: 'United Kingdom', players: 2 },
+            { country: 'Italy', players: 2 },
+            { country: 'Argentina', players: 2 },
+            { country: 'Ukraine', players: 2 },
+            { country: 'Dominican Republic', players: 2 },
+            { country: 'Georgia', players: 2 },
+            { country: 'Lithuania', players: 2 },
+            { country: 'Latvia', players: 2 },
+            { country: 'Montenegro', players: 2 },
+            { country: 'Brazil', players: 1 },
+            { country: 'Sudan', players: 1 },
+            { country: 'Angola', players: 1 },
+            { country: 'Senegal', players: 1 },
+            { country: 'Guinea', players: 1 },
+            { country: 'South Sudan', players: 1 },
+            { country: 'Czech Republic', players: 1 },
+            { country: 'Portugal', players: 1 },
+            { country: 'Israel', players: 1 },
+            { country: 'Austria', players: 1 },
+            { country: 'Switzerland', players: 1 },
+            { country: 'Republic of the Congo', players: 1 },
+            { country: 'Finland', players: 1 },
+            { country: 'New Zealand', players: 1 },
+            { country: 'Bosnia and Herzegovina', players: 1 },
+            { country: 'Jamaica', players: 1 },
+            { country: 'Saint Lucia', players: 1 }
+            // Add more countries and player numbers as needed
+        ];
+
+        // Create a map chart
+        const mapChart = am4core.create("map", am4maps.MapChart);
+        mapChart.geodata = am4geodata_worldLow;
+        mapChart.projection = new am4maps.projections.Miller();
+        const polygonSeries = mapChart.series.push(new am4maps.MapPolygonSeries());
+        polygonSeries.useGeodata = true;
+
+        // Configure map series
+        polygonSeries.calculateVisualCenter = true;
+        polygonSeries.exclude = ["AQ"]; // Exclude Antarctica
+
+        // Create map polygon template
+        const polygonTemplate = polygonSeries.mapPolygons.template;
+        polygonTemplate.tooltipText = "{name}: {value}%";
+        polygonTemplate.fill = am4core.color("#74B266"); // Default color
+
+        // Create heat rule to color countries based on the percentage of players
+        const heatRule = polygonSeries.heatRules.push({
+            target: polygonTemplate,
+            property: "fill",
+            min: am4core.color("#FFFFFF"),
+            max: am4core.color("#74B266"),
+        });
+
+        // Add data to the map
+        polygonSeries.data = nbaPlayerData.map(item => {
+            const percentage = (item.players / nbaPlayerData.reduce((total, country) => total + country.players, 0) * 100).toFixed(2);
+            return { ...item, value: percentage };
+        });
+
+        // Create a graph chart
+        const graphChart = am4core.create("graph", am4charts.XYChart);
+        graphChart.data = nbaPlayerData;
+
+        // Create X-axis
+        const categoryAxis = graphChart.xAxes.push(new am4charts.CategoryAxis());
+        categoryAxis.dataFields.category = "country";
+        categoryAxis.renderer.minGridDistance = 10;
+        categoryAxis.renderer.labels.template.rotation = 45;
+
+        // Create Y-axis
+        const valueAxis = graphChart.yAxes.push(new am4charts.ValueAxis());
+        valueAxis.renderer.minGridDistance = 30;
+
+        // Create column series
+        const series = graphChart.series.push(new am4charts.ColumnSeries());
+        series.dataFields.valueY = "players";
+        series.dataFields.categoryX = "country";
+        series.columns.template.stroke = am4core.color("#2E3D4E"); // Column border color
+        series.columns.template.strokeWidth = 2;
+        series.columns.template.fill = am4core.color("#4CAF50"); // Column fill color
+
+        // Add cursor behavior for the graph
+        graphChart.cursor = new am4charts.XYCursor();
+        graphChart.cursor.lineX.stroke = am4core.color("#74B266");
+        graphChart.cursor.lineX.strokeWidth = 2;
+    </script>
+</body>
+</html>

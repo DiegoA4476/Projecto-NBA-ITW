@@ -1,0 +1,117 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>ITW 2023/24 - NBA Conference Details</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
+    <link href="../lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../lib/font-awesome/dist/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="myCSS.css" />
+    <style type="text/css">
+        .dropdown-menu li {
+            position: relative;
+        }
+
+        .dropdown-menu .submenu {
+            display: none;
+            position: absolute;
+            left: 100%;
+            top: -7px;
+        }
+
+        .dropdown-menu > li:hover > .submenu {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black bg-gradient shadow-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html" tabindex="NBA"><img src="https://pngimg.com/d/nba_PNG14.png" height="30" /></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="arenas.html" style="color: whitesmoke; font-family:'Lucida Bright'"><i class="fa fa-soccer-ball-o text-warning"></i> Arenas</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="Players.html" style="color: whitesmoke; font-family: 'Lucida Bright'"><i class="fa fa-user-o text-primary"></i> Players</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="Teams.html" style="color: whitesmoke; font-family: 'Lucida Bright'"><i class="fa fa-flag-o text-danger"></i> Teams</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="States.html" style="color: whitesmoke; font-family: 'Lucida Bright'"><i class="fa fa-map-marker text-success"></i> States</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="Seasons.html" style="color: whitesmoke; font-family: 'Lucida Bright'"><i class="fa fa-bookmark-o text-info "></i> Seasons</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toogle" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: whitesmoke; font-family: 'Lucida Bright'">
+                            <i class="fa fa-caret-down" aria-hidden="true"></i>More
+                        </a>
+                        <ul class="dropdown-menu bg-black bg-gradient">
+                            <li><a class="dropdown-item active" href="./Conferences.html" style="color: whitesmoke; font-family: 'Lucida Bright'">Conferences</a></li>
+                            <li><a class="dropdown-item" href="./formulario.html" style="color: whitesmoke; font-family: 'Lucida Bright'">Forms</a></li>
+                            <li><a class="dropdown-item" href="./merch.html" style="color: whitesmoke; font-family: 'Lucida Bright'">Merch</a></li>
+                            <li>
+                                <a class="dropdown-item" style="color: whitesmoke; font-family: 'Lucida Bright'">Stats<i class="fa fa-caret-right" aria-hidden="true"></i></a>
+                                <ul class="dropdown-menu bg-black bg-gradient submenu">
+                                    <li><a class="dropdown-item" href="./nationality.html" style="color: whitesmoke; font-family: 'Lucida Bright'">Nationality</a></li>
+                                    <li><a class="dropdown-item" href="./points.html" style="color: whitesmoke; font-family: 'Lucida Bright'">Points</a></li>
+                                    <li><a class="dropdown-item" href="./winners.html" style="color: whitesmoke; font-family: 'Lucida Bright'">Winner</a></li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </li>
+                </ul>
+                <span class="form-check form-switch ms-3 mt-2 me-2">
+                    <input class="form-check-input" type="checkbox" id="lightSwitch" style="width: 40px; height: 20px; background-color: #808080; border-color: #808080;" />
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Work Area-->
+    <div class="container">
+        <div class="py-2 border-bottom mb-3">
+            <h2 data-bind="text:Name() +' [' + Id() + ']'"></h2>
+        </div>
+        <!-- ko if:Name().length > 0 -->
+        <div class="row border-bottom g-2">
+            <div class="col-2">Id</div><div class="col-10" data-bind="text: Id"></div>
+        </div>
+        <div class="row border-bottom g-2">
+            <div class="col-2">Name</div><div class="col-10" data-bind="text: Name"></div>
+        </div>
+        <!-- /ko -->
+        <a href="./Conferences.html" class="btn btn-default btn-sm small"><i class="fa fa-list"></i> Back to List</a>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        <img src="../images/NBA_logoH.png" height="30" /> Loading data...
+                    </h5>
+                </div>
+                <div class="modal-body text-center">
+                    <i class="fa fa-spin fa-3x fa-refresh"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of Work Area -->
+    <nav class="navbar navbar-dark bg-black bg-gradient shadow-lg fixed-bottom">
+        <div class="container small">
+            <div class="navbar-text" style="color: whitesmoke">&copy;  Introdução as Tecnologias Web - 2023/24</div>
+            <div class="navbar-nav">
+                <div class="nav-item text-end"><a href="https://www.ua.pt" class="nav-link" style="color: whitesmoke">Universidade de Aveiro</a></div>
+            </div>
+        </div>
+    </nav>
+    <script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../lib/knockout/dist/knockout-latest.min.js"></script>
+    <script src="../lib/jquery/dist/jquery.min.js"></script>
+    <script src="ConferencesDetails.js"></script>
+    <script src="darkmode.js"></script>
+</body>
+</html>
